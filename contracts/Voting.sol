@@ -42,6 +42,17 @@ contract Voting {
     return votes[option];
   }
 
+  //
+  /**
+   * @dev 投票の結果を1回で全て取得する
+   * @return votesA オプションAの得票数
+   * @return votesB オプションBの得票数
+   */
+  function getAllVotes() public view returns (uint256 votesA, uint256 votesB) {
+    votesA = votes["A"];
+    votesB = votes["B"];
+  }
+
   /**
    * @dev 指定されたオプションが有効かどうかを確認
    * @param option 確認するオプション
