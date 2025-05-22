@@ -66,4 +66,47 @@ describe('Votionコントラクトのテスト', async () => {
     expect(voteA2).to.equal(1);
     expect(voteB2).to.equal(1);
   });
+
+  it('3. 異常系: 同じアドレスが2回投票しようとするとrevertする', async () => {
+    // addr1がAに投票
+    await voting.connect(addr1).vote('A');
+
+    // addr1が再度Aに投票しようとするとrevert
+    await expect(voting.connect(addr1).vote('A')).to.be.revertedWith(
+      'Already voted'
+    );
+
+    // addr2がBに投票
+    await voting.connect(addr2).vote('B');
+
+    // addr2が再度Bに投票しようとするとrevert
+    await expect(voting.connect(addr2).vote('B')).to.be.revertedWith(
+      'Already voted'
+    );
+  });
+
+  it('4. 異常系: 存在しない選択肢に投票しようとするとrevertする', async () => {
+    // addr1が存在しない選択肢に投票しようとするとrevert
+    await expect(voting.connect(addr1).vote('C')).to.be.revertedWith(
+      'Invalid option'
+    );
+
+    // addr2が存在しない選択肢に投票しようとするとrevert
+    await expect(voting.connect(addr2).vote('D')).to.be.revertedWith(
+      'Invalid option'
+    );
+  });
+
+  it('5. getAllVotes() が正しく集計される', async () => {
+    // addr1がAに投票
+    await voting.connect(addr1).vote('A');
+    // addr2がBに投票
+    await voting.connect(addr2).vote('B');
+
+    // 投票後の票数を取得
+    const [voteA, voteB] = await voting.getAllVotes();
+    // Aの票数が1であることを確認
+    expect(voteA).to.equal(1);
+    expect(voteB).to.equal(1);
+  });
 });
