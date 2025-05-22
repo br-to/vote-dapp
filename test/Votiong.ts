@@ -3,25 +3,30 @@ import { ethers } from 'hardhat';
 import type { Voting } from '../typechain-types';
 import type { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers';
 
-// テストに必要なデプロイとアカウントの取得を事前に行う
-let voting: Voting;
-let owner: SignerWithAddress;
-let addr1: SignerWithAddress;
-let addr2: SignerWithAddress;
+describe('Votionコントラクトのテスト', () => {
+  // テストに必要なデプロイとアカウントの取得を事前に行う
+  let voting: Voting;
+  let owner: SignerWithAddress;
+  let addr1: SignerWithAddress;
+  let addr2: SignerWithAddress;
 
-beforeEach(async () => {
-  // コントラクトのデプロイ
-  voting = await ethers.deployContract('Voting');
+  beforeEach(async () => {
+    // コントラクトのデプロイ
+    voting = await ethers.deployContract('Voting');
 
-  // アカウントの取得
-  [owner, addr1, addr2] = await ethers.getSigners();
-});
+    // アカウントの取得
+    [owner, addr1, addr2] = await ethers.getSigners();
+  });
 
-describe('Votionコントラクトのテスト', async () => {
-  it('1. AとBの票数が0であること', async () => {
+  // 投票の結果を確認するためのヘルパー関数
+  const assertVotes = async (expectedA: number, expectedB: number) => {
     const [voteA, voteB] = await voting.getAllVotes();
-    expect(voteA).to.equal(0);
-    expect(voteB).to.equal(0);
+    expect(voteA).to.equal(expectedA);
+    expect(voteB).to.equal(expectedB);
+  };
+
+  it('1. AとBの票数が0であること', async () => {
+    assertVotes(0, 0);
   });
 
   it('2. 正常系: 任意のアカウントがAまたはBに1票だけ投票できる', async () => {
@@ -30,21 +35,14 @@ describe('Votionコントラクトのテスト', async () => {
       .to.emit(voting, 'Voted')
       .withArgs(addr1.address, 'A');
 
-    // 投票後の票数を取得
-    const [voteA, voteB] = await voting.getAllVotes();
-    // Aの票数が1であることを確認
-    expect(voteA).to.equal(1);
-    expect(voteB).to.equal(0);
+    assertVotes(1, 0);
 
     // addr2がBに投票（イベントの発火も同時に確認）
     await expect(voting.connect(addr2).vote('B'))
       .to.emit(voting, 'Voted')
       .withArgs(addr2.address, 'B');
-    // 投票後の票数を取得
-    const [voteA2, voteB2] = await voting.getAllVotes();
-    // Bの票数が1であることを確認
-    expect(voteA2).to.equal(1);
-    expect(voteB2).to.equal(1);
+
+    assertVotes(1, 1);
   });
 
   it('3. 異常系: 同じアドレスが2回投票しようとするとrevertする', async () => {
@@ -83,10 +81,6 @@ describe('Votionコントラクトのテスト', async () => {
     // addr2がBに投票
     await voting.connect(addr2).vote('B');
 
-    // 投票後の票数を取得
-    const [voteA, voteB] = await voting.getAllVotes();
-    // Aの票数が1であることを確認
-    expect(voteA).to.equal(1);
-    expect(voteB).to.equal(1);
+    assertVotes(1, 1);
   });
 });
