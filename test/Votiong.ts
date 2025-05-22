@@ -17,26 +17,6 @@ beforeEach(async () => {
   [owner, addr1, addr2] = await ethers.getSigners();
 });
 
-/**
-1. 各選択肢（A/B）の票数が0であること
-
-2. 正常系：投票処理
-任意のアカウントがAまたはBに1票だけ投票できる
-
-投票後、該当選択肢の票数が+1されていること
-
-イベント Voted(address, string) が発行されること
-
-3. 異常系：重複投票の防止
-同じアドレスが2回投票しようとするとrevertする
-
-4. 異常系：存在しない選択肢に投票
-"C" など定義されていないオプションに投票しようとするとrevertする
-
-5. getAllVotes() が正しく集計される
-
-*/
-
 describe('Votionコントラクトのテスト', async () => {
   it('1. AとBの票数が0であること', async () => {
     const [voteA, voteB] = await voting.getAllVotes();
