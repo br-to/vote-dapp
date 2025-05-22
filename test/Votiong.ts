@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import type { Voting } from '../typechain-types'; // 型生成済み前提
+import type { Voting } from '../typechain-types';
 import type { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers';
 
 // テストに必要なデプロイとアカウントの取得を事前に行う
