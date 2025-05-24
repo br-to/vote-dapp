@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { Wallet } from "lucide-react";
+
 export default function Header() {
 	return (
 		<header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#293038] px-6 sm:px-10 py-4">
@@ -23,21 +26,16 @@ export default function Header() {
 						fillRule="evenodd"
 					/>
 				</svg>
-				<h1 className="text-white text-xl sm:text-2xl font-bold leading-tight tracking-[-0.015em]">
+				<h1 className="text-xl sm:text-2xl font-bold leading-tight tracking-[-0.015em]">
 					VoteChain
 				</h1>
 			</div>
 			<div className="flex items-center gap-2 sm:gap-4">
-				<button
-					type="button"
-					className="flex items-center justify-center gap-2 rounded-lg h-10 sm:h-11 px-3 sm:px-4 bg-[#1978e5] text-white text-sm sm:text-base font-semibold leading-normal tracking-[0.015em] hover:bg-[#166ac8] transition-colors duration-200"
-				>
-					<span className="material-symbols-outlined text-xl sm:text-2xl">
-						account_balance_wallet
-					</span>
-					<span className="truncate hidden sm:inline">Connect Wallet</span>
-					<span className="truncate sm:hidden">Connect</span>
-				</button>
+				<Button className="gap-2">
+					<Wallet size={20} />
+					<span className="hidden sm:inline">Connect Wallet</span>
+					<span className="sm:hidden">Connect</span>
+				</Button>
 			</div>
 		</header>
 	);

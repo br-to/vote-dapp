@@ -47,15 +47,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<head>
-				<link
-					href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-					rel="stylesheet"
-				/>
-			</head>
+		<html lang="en" className="dark">
 			<body
-				className={`bg-[#111418] text-white ${manropse.variable} ${notSansJP.variable} antialiased`}
+				className={`min-h-screen bg-[#111418] text-white ${manropse.variable} ${notSansJP.variable} antialiased`}
 			>
 				{children}
 			</body>

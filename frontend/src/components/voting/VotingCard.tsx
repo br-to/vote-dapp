@@ -1,3 +1,10 @@
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
 import VoteButtons from "./VoteButtons";
 import VoteResults from "./VoteResults";
 import VoteStatus from "./VoteStatus";
@@ -14,18 +21,21 @@ export default function VotingCard({
 	hasVoted = true,
 }: VotingCardProps) {
 	return (
-		<div className="bg-[#1a1f24] p-6 sm:p-8 rounded-xl shadow-2xl">
-			<h2 className="text-2xl sm:text-3xl font-bold text-center mb-2 tracking-tight">
-				Vote on the Proposal
-			</h2>
-			<p className="text-[#b0bac9] text-sm sm:text-base text-center mb-6 sm:mb-8">
-				Cast your vote for the current proposal. Your vote will be securely
-				recorded on the blockchain.
-			</p>
-
-			<VoteButtons />
-			<VoteResults optionAVotes={optionAVotes} optionBVotes={optionBVotes} />
-			<VoteStatus hasVoted={hasVoted} />
-		</div>
+		<Card className="w-full max-w-2xl mx-auto">
+			<CardHeader className="text-center">
+				<CardTitle className="text-2xl sm:text-3xl">
+					Vote on the Proposal
+				</CardTitle>
+				<CardDescription className="text-sm sm:text-base">
+					Cast your vote for the current proposal. Your vote will be securely
+					recorded on the blockchain.
+				</CardDescription>
+			</CardHeader>
+			<CardContent className="space-y-6">
+				<VoteButtons />
+				<VoteResults optionAVotes={optionAVotes} optionBVotes={optionBVotes} />
+				<VoteStatus hasVoted={hasVoted} />
+			</CardContent>
+		</Card>
 	);
 }
