@@ -1,34 +1,64 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Manrope, Noto_Sans_JP } from "next/font/google";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const manropse = Manrope({
+	weight: ["400", "500", "600", "700"],
+	subsets: ["latin"],
+	variable: "--font-manrope",
 });
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const notSansJP = Noto_Sans_JP({
+	weight: ["400", "500", "600", "700"],
+	subsets: ["latin"],
+	variable: "--font-geist-sans",
 });
 
 export const metadata: Metadata = {
-  title: 'vote dapp',
-  description: 'vote dapp',
+	title: "Voting App",
+	description: "A simple voting application",
+	icons: {
+		icon: "/favicon.ico",
+	},
+	openGraph: {
+		title: "Voting App",
+		description: "A simple voting application",
+		url: "https://voting-app.example.com",
+		siteName: "Voting App",
+		type: "website",
+		images: [
+			{
+				url: "/og-image.png",
+				width: 1200,
+				height: 630,
+				alt: "Voting App Open Graph Image",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Voting App",
+		description: "A simple voting application",
+	},
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<head>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+					rel="stylesheet"
+				/>
+			</head>
+			<body
+				className={`bg-[#111418] text-white ${manropse.variable} ${notSansJP.variable} antialiased`}
+			>
+				{children}
+			</body>
+		</html>
+	);
 }
