@@ -9,7 +9,9 @@
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "format": "biome format --write .",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "lint:react-compiler": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:all": "npm run check && npm run lint:react-compiler"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -22,11 +24,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/parser": "^8.32.1",
     "babel-plugin-react-compiler": "^19.1.0-rc.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",

@@ -1,15 +1,25 @@
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import { FlatCompat } from "@eslint/eslintrc";
 import reactCompiler from "eslint-plugin-react-compiler";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-});
-
-const eslintConfig = [...compat, reactCompiler.configs.recommended];
+const eslintConfig = [
+	{
+		files: ["**/*.{js,jsx,ts,tsx}"],
+		languageOptions: {
+			parser: await import("@typescript-eslint/parser"),
+			parserOptions: {
+				ecmaVersion: "latest",
+				sourceType: "module",
+				ecmaFeatures: {
+					jsx: true,
+				},
+			},
+		},
+		plugins: {
+			"react-compiler": reactCompiler,
+		},
+		rules: {
+			"react-compiler/react-compiler": "error",
+		},
+	},
+];
 
 export default eslintConfig;
