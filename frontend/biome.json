@@ -25,5 +25,10 @@
 			"allowComments": true,
 			"allowTrailingCommas": true
 		}
+	},
+	"css": {
+		"formatter": {
+			"enabled": true
+		}
 	}
 }
