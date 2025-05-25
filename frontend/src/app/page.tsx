@@ -101,25 +101,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
-			<section className="px-6 py-16">
-				<div className="mx-auto max-w-4xl text-center">
-					<h2 className="text-3xl font-bold text-white mb-6">
-						Join the Vote Today
-					</h2>
-					<p className="text-gray-300 mb-8">
-						Connect your MetaMask wallet and start voting immediately
-					</p>
-					<Link href="/vote">
-						<Button
-							size="lg"
-							className="bg-primary hover:bg-primary/80 text-primary-foreground px-12"
-						>
-							Open Voting App
-						</Button>
-					</Link>
-				</div>
-			</section>
 		</div>
 	);
 }
