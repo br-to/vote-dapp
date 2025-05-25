@@ -214,7 +214,7 @@ export const useVotingContract = () => {
 			if (!isConnected || !account) {
 				throw new Error("Wallet not connected");
 			}
-			console.log("投票オプション:", option);
+
 			const contract = await getContract(true);
 			const tx = await contract.vote(option);
 			setTxHash(tx.hash);
@@ -229,11 +229,8 @@ export const useVotingContract = () => {
 			queryClient.invalidateQueries({
 				queryKey: ["voting", "hasVoted", account],
 			});
-
-			console.log(`Vote for option ${data.option} successful!`, data.receipt);
 		},
 		onError: (error) => {
-			console.error("Vote failed:", error);
 			setTxHash(null);
 		},
 		onSettled: () => {

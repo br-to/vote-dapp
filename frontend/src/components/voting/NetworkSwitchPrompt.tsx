@@ -58,11 +58,9 @@ export const NetworkSwitchPrompt: React.FC<NetworkSwitchPromptProps> = ({
 					});
 					onNetworkSwitch?.();
 				} catch (addError) {
-					console.error("Failed to add network:", addError);
 					alert("Failed to add network to MetaMask");
 				}
 			} else {
-				console.error("Failed to switch network:", error);
 				alert("Failed to switch network");
 			}
 		} finally {

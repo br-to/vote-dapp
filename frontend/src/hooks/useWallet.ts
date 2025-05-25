@@ -15,7 +15,6 @@ const getWalletAccounts = async (): Promise<string[]> => {
 		})) as string[];
 		return accounts;
 	} catch (error) {
-		console.error("Error getting wallet accounts:", error);
 		return [];
 	}
 };
@@ -60,7 +59,6 @@ export const useWallet = () => {
 		// MetaMaskがインストールされていない場合はエラーをスロー
 		if (!window.ethereum) {
 			const error = new Error("MetaMask is not installed");
-			console.error(error.message);
 			throw error;
 		}
 

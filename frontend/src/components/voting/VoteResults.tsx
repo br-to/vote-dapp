@@ -17,8 +17,6 @@ export default function VoteResults() {
 		);
 	}
 
-	console.log("Voting Results:", votingResults);
-
 	const totalVotes = votingResults?.totalVotes ?? 0;
 	const optionAVotes = votingResults?.votesA ?? 0;
 	const optionBVotes = votingResults?.votesB ?? 0;

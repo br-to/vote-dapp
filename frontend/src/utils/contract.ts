@@ -70,7 +70,6 @@ export const validateNetwork = async (provider: {
 
 		return Number(network.chainId) === expectedChainId;
 	} catch (error) {
-		console.error("Failed to validate network:", error);
 		return false;
 	}
 };
