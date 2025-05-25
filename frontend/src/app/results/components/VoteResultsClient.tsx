@@ -28,7 +28,7 @@ export default function VoteResultsClient() {
 						<BarChart3 className="text-primary" size={32} />
 						<h2 className="text-2xl font-bold text-white">Live Vote Results</h2>
 					</div>
-					<VoteResults optionAVotes={123} optionBVotes={456} />
+					<VoteResults />
 				</Card>
 
 				<div className="text-center mt-8">
