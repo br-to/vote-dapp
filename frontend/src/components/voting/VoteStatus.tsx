@@ -1,11 +1,23 @@
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle } from "lucide-react";
+import { useVotingContract } from "@/hooks/useVotingContract";
+import { useWallet } from "@/hooks/useWallet";
+import { CheckCircle, Loader2 } from "lucide-react";
 
-type VoteStatusProps = {
-	hasVoted: boolean;
-};
+export default function VoteStatus() {
+	const { isConnected } = useWallet();
+	const { hasVoted, isLoadingVoteStatus } = useVotingContract();
 
-export default function VoteStatus({ hasVoted }: VoteStatusProps) {
+	if (!isConnected) return null;
+
+	if (isLoadingVoteStatus) {
+		return (
+			<div className="flex items-center gap-3 p-4 rounded-lg bg-gray-800/50 border border-gray-600">
+				<Loader2 className="animate-spin text-gray-400" size={20} />
+				<p className="text-sm text-gray-400">Checking vote status...</p>
+			</div>
+		);
+	}
+
 	if (!hasVoted) return null;
 
 	return (
@@ -16,7 +28,7 @@ export default function VoteStatus({ hasVoted }: VoteStatusProps) {
 					variant="secondary"
 					className="mb-1 bg-primary text-primary-foreground"
 				>
-					Vote Recorded
+					Vote Completed
 				</Badge>
 				<p className="text-sm text-gray-400">
 					Your vote has been successfully recorded on the blockchain. Thank you
