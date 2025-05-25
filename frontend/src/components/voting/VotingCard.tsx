@@ -18,17 +18,17 @@ type VotingCardProps = {
 export default function VotingCard({
 	optionAVotes = 123,
 	optionBVotes = 456,
-	hasVoted = true,
+	hasVoted = false,
 }: VotingCardProps) {
 	return (
-		<Card className="w-full max-w-2xl mx-auto">
+		<Card className="bg-[#1a1f26] border-gray-700 w-full max-w-2xl mx-auto">
 			<CardHeader className="text-center">
-				<CardTitle className="text-2xl sm:text-3xl">
-					Vote on the Proposal
+				<CardTitle className="text-2xl sm:text-3xl text-white">
+					Vote on the Current Proposal
 				</CardTitle>
-				<CardDescription className="text-sm sm:text-base">
+				<CardDescription className="text-sm sm:text-base text-gray-400">
 					Cast your vote for the current proposal. Your vote will be securely
-					recorded on the blockchain.
+					recorded on the blockchain and cannot be modified.
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="space-y-6">
