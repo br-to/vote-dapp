@@ -24,6 +24,7 @@ const getWalletAccounts = async (): Promise<string[]> => {
  */
 export const useWallet = () => {
 	const [isConnecting, setIsConnecting] = useState(false);
+	const [showMetaMaskAlert, setShowMetaMaskAlert] = useState(false);
 	const queryClient = useQueryClient();
 
 	// ウォレットアカウント情報をクエリで管理
@@ -56,8 +57,9 @@ export const useWallet = () => {
 	 * @throws Error - ウォレットがインストールされていない、またはユーザーが接続を拒否した場合
 	 */
 	const connectWallet = async (): Promise<string | undefined> => {
-		// MetaMaskがインストールされていない場合はエラーをスロー
+		// MetaMaskがインストールされていない場合はアラートを表示
 		if (!window.ethereum) {
+			setShowMetaMaskAlert(true);
 			const error = new Error("MetaMask is not installed");
 			throw error;
 		}
@@ -129,5 +131,7 @@ export const useWallet = () => {
 		connectWallet,
 		disconnectWallet,
 		formatAddress,
+		showMetaMaskAlert,
+		setShowMetaMaskAlert,
 	};
 };

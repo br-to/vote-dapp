@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { MetaMaskInstallAlert } from "@/components/wallet/MetaMaskInstallAlert";
 import { useWallet } from "@/hooks/useWallet";
 import { LogOut, Wallet } from "lucide-react";
 
@@ -75,6 +76,8 @@ export default function WalletSection() {
 		connectWallet,
 		disconnectWallet,
 		formatAddress,
+		showMetaMaskAlert,
+		setShowMetaMaskAlert,
 	} = useWallet();
 
 	// 初期化前
@@ -95,9 +98,15 @@ export default function WalletSection() {
 
 	// 未接続
 	return (
-		<WalletDisconnected
-			isConnecting={isConnecting}
-			connectWallet={connectWallet}
-		/>
+		<>
+			<WalletDisconnected
+				isConnecting={isConnecting}
+				connectWallet={connectWallet}
+			/>
+			<MetaMaskInstallAlert
+				isOpen={showMetaMaskAlert}
+				onClose={() => setShowMetaMaskAlert(false)}
+			/>
+		</>
 	);
 }
