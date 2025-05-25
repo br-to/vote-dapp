@@ -21,12 +21,12 @@ describe("Votionコントラクトのテスト", () => {
 	// 投票の結果を確認するためのヘルパー関数
 	const assertVotes = async (expectedA: number, expectedB: number) => {
 		const [voteA, voteB] = await voting.getAllVotes();
-		expect(voteA).to.equal(expectedA);
-		expect(voteB).to.equal(expectedB);
+		expect(Number(voteA)).to.equal(expectedA);
+		expect(Number(voteB)).to.equal(expectedB);
 	};
 
 	it("1. AとBの票数が0であること", async () => {
-		assertVotes(0, 0);
+		await assertVotes(0, 0);
 	});
 
 	it("2. 正常系: 任意のアカウントがAまたはBに1票だけ投票できる", async () => {
@@ -35,14 +35,14 @@ describe("Votionコントラクトのテスト", () => {
 			.to.emit(voting, "Voted")
 			.withArgs(addr1.address, "A");
 
-		assertVotes(1, 0);
+		await assertVotes(1, 0);
 
 		// addr2がBに投票（イベントの発火も同時に確認）
 		await expect(voting.connect(addr2).vote("B"))
 			.to.emit(voting, "Voted")
 			.withArgs(addr2.address, "B");
 
-		assertVotes(1, 1);
+		await assertVotes(1, 1);
 	});
 
 	it("3. 異常系: 同じアドレスが2回投票しようとするとrevertする", async () => {
@@ -81,6 +81,6 @@ describe("Votionコントラクトのテスト", () => {
 		// addr2がBに投票
 		await voting.connect(addr2).vote("B");
 
-		assertVotes(1, 1);
+		await assertVotes(1, 1);
 	});
 });
