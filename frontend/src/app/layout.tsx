@@ -14,30 +14,34 @@ const notSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-	title: "Voting App",
-	description: "A simple voting application",
+	title: "VoteChain - Decentralized Voting Platform",
+	description:
+		"A transparent and secure voting system powered by blockchain technology",
 	icons: {
 		icon: "/favicon.ico",
 	},
 	openGraph: {
-		title: "Voting App",
-		description: "A simple voting application",
-		url: "https://voting-app.example.com",
-		siteName: "Voting App",
+		title: "VoteChain - Decentralized Voting Platform",
+		description:
+			"A transparent and secure voting system powered by blockchain technology",
+		// TODO: vercelにデプロイしたら直す
+		url: "http://localhost:3000",
+		siteName: "VoteChain",
 		type: "website",
 		images: [
 			{
 				url: "/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "Voting App Open Graph Image",
+				alt: "VoteChain - Decentralized Voting Platform",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Voting App",
-		description: "A simple voting application",
+		title: "VoteChain - Decentralized Voting Platform",
+		description:
+			"A transparent and secure voting system powered by blockchain technology",
 	},
 };
 
