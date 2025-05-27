@@ -4,7 +4,7 @@
 [build]
   command = "npm run build"
   publish = ".next" # Next.jsのビルド出力先
-  environment = { NODE_VERSION = "18" }
+  environment = { NODE_VERSION = "20" }
 
 [build.environment]
   # 必要な環境変数があればここに追加（機密情報は含めないこと）
