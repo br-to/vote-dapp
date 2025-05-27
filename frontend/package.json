@@ -2,19 +2,25 @@
 	"name": "frontend",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=9.0.0"
+	},
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"dev:sepolia": "cp .env.sepolia .env.local && next dev --turbopack",
 		"build": "next build",
 		"build:sepolia": "cp .env.sepolia .env.local && next build",
 		"build:production": "cp .env.production .env.local && next build",
+		"build:cloudflare": "cp .env.cloudflare .env.local && next build",
 		"start": "next start",
 		"lint": "biome lint .",
 		"lint:fix": "biome lint --write .",
 		"format": "biome format --write .",
 		"check": "biome check --write .",
 		"lint:react-compiler": "eslint . --ext .ts,.tsx,.js,.jsx",
-		"lint:all": "npm run check && npm run lint:react-compiler"
+		"lint:all": "npm run check && npm run lint:react-compiler",
+		"deploy:cloudflare": "npx wrangler pages deploy .next --project-name vote-dapp"
 	},
 	"dependencies": {
 		"@radix-ui/react-alert-dialog": "^1.1.14",
