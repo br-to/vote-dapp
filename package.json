@@ -19,6 +19,7 @@
   "homepage": "https://github.com/br-to/vote-dapp#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.5.0",
     "hardhat": "^2.24.0"
   }
 }
