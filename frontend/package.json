@@ -9,6 +9,7 @@
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"dev:sepolia": "cp .env.sepolia .env.local && next dev --turbopack",
+		"prebuild": "npx hardhat typechain",
 		"build": "next build",
 		"build:sepolia": "cp .env.sepolia .env.local && next build",
 		"build:production": "cp .env.production .env.local && next build",
