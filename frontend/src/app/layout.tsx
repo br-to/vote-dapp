@@ -45,6 +45,8 @@ export const metadata: Metadata = {
 	},
 };
 
+export const runtime = "edge";
+
 export default function RootLayout({
 	children,
 }: Readonly<{
