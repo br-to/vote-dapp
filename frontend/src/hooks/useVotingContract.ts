@@ -273,8 +273,6 @@ export const useVotingContract = () => {
 			return "Insufficient funds for gas * price + value";
 		}
 
-		console.log("Unexpected error:", error);
-
 		return "An unexpected error occurred. Please try again later.";
 	};
 
