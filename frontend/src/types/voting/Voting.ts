@@ -21,7 +21,7 @@ import type {
 	TypedEventLog,
 	TypedListener,
 	TypedLogDescription,
-} from "../../../typechain-types/common";
+} from "./common";
 
 export interface VotingInterface extends Interface {
 	getFunction(
