@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ethers } from "ethers";
 import { useState } from "react";
-import type { Voting } from "../../../typechain-types/Voting";
+import type { Voting } from "../types/voting/Voting";
 
 import {
 	getContractAddress,
