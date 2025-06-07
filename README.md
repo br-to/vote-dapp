@@ -116,7 +116,7 @@ npx hardhat ignition deploy ./ignition/modules/Voting.ts --network sepolia
 ```
 
 3. フロントエンド設定を更新
-   デプロイされたコントラクトアドレスを `frontend/src/config/` に設定
+   デプロイされたコントラクトアドレスを `frontend/.env.local` の `NEXT_PUBLIC_VOTING_CONTRACT_ADDRESS` に設定
 
 ### 開発サーバー起動
 
